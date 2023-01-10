@@ -20,6 +20,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/OmniMud.WebClient'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     ArtifactName: 'OmniMud.WebClient'
     publishLocation: 'Container'
