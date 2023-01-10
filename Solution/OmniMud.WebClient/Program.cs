@@ -1,3 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using OmniMud.WebClient.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using System.Security.Claims;
+
 namespace OmniMud.WebClient
 {
     public class Program
@@ -6,7 +12,10 @@ namespace OmniMud.WebClient
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddAuthorization();
+
             builder.Services.AddMvc();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -22,6 +31,7 @@ namespace OmniMud.WebClient
 
             app.UseRouting();
 
+            app.UseMiddleware<AzureGoogleAuthenticationMiddleware>();            
             app.UseAuthorization();
 
             app.MapDefaultControllerRoute();

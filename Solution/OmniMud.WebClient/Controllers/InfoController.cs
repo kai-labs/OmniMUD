@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace OmniMud.WebClient.Controllers
-{    
+{
+    [Authorize]
     public class InfoController : Controller
     {
         public IActionResult GoogleHeaders()
