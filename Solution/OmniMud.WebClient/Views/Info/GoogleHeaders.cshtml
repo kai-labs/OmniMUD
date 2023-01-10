@@ -1,9 +1,10 @@
-﻿@{
+﻿@using Microsoft.Extensions.Primitives
+@{
     Layout = "_Layout";
 }
 
 <table>
-@foreach (KeyValuePair<string,string> kvp in Model)
+@foreach (KeyValuePair<string,StringValues> kvp in Model)
 {
     <tr>
         <td>@kvp.Key</td>
