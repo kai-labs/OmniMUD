@@ -1,0 +1,20 @@
+trigger:
+- dev
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'Solution/OmniMud.WebClient/OmniMud.WebClient.csproj'
+    arguments: '-c Release -o $(Build.ArtifactStagingDirectory)/OmniMud.WebClient'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/OmniMud.WebCLient'
+    ArtifactName: 'OmniMud.WebClient'
+    publishLocation: 'Container'
