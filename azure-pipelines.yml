@@ -16,8 +16,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'Solution/OmniMud.WebClient/OmniMud.WebClient.csproj'
-    arguments: '-c Release -o $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: false   
+    arguments: '-c Release -o $(Build.ArtifactStagingDirectory)'    
 
 - task: PublishBuildArtifacts@1
   inputs:
