@@ -16,10 +16,11 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'Solution/OmniMud.WebClient/OmniMud.WebClient.csproj'
-    arguments: '-c Release -o $(Build.ArtifactStagingDirectory)/OmniMud.WebClient'
+    arguments: '-c Release -o $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: false
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/OmniMud.WebCLient'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/OmniMud.WebClient'
     ArtifactName: 'OmniMud.WebClient'
     publishLocation: 'Container'
