@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OmniMud.WebClient.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()
