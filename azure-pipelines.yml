@@ -17,7 +17,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/OmniMud.WebApp.csproj'
-    arguments: '--no-restore -c Release -o $(Build.ArtificatStagingDirectory)'
+    arguments: '-c Release -o $(Build.ArtificatStagingDirectory)'
 
 - task: AzureRmWebAppDeployment@4
   displayName: 'Deploy OmniMud.WebApp to App Service'
