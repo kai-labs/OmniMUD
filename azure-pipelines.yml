@@ -5,10 +5,25 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: UseDotNet@2
+  displayName: 'Use .NET 9.x'
+  inputs:
+    packageType: 'sdk'
+    version: '9.x'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: DotNetCoreCLI@2
+  displayName: 'Build OmniMud.WebApp'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/OmniMud.WebApp.csproj'
+    arguments: '--no-restore -c Release -o $(Build.ArtificatStagingDirectory)'
+
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Deploy OmniMud.WebApp to App Service'
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Pay-As-You-Go(41359bd6-ab64-43d2-995c-f00f15ba296d)'
+    appType: 'webAppLinux'
+    WebAppName: 'app-omnimud-prod'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/OmniMud.WebApp.zip'
